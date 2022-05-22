@@ -17,8 +17,9 @@ def post_tweet(message, media_fname=None):
     if media_fname is None:
         twitter.update_status(status=message)
     else:
-        photo = open(media_fname)
+        photo = open(media_fname, 'rb')
         response = twitter.upload_media(media=photo)
+        print(media_fname)
         twitter.update_status(status=message, media_ids=[response['media_id']])
 
 def main():
